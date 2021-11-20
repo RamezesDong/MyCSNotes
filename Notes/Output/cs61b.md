@@ -160,9 +160,27 @@ The picture which is shown in the discussion clearly explains the concept .
 - The problem Creating Cats uses the super syntax for calling superclass' constructor
 - 动态方法选择此题，用了末尾节点来确保max函数不会出错，用了继承和override(重写)
 
+#### hw1
+
+这是第一个homework ，利用Karplus-Strong 算法来模拟乐器声音（Physical Modeling Synthesis）。算法分两部分，第一是用白噪音和周期重复来模拟**弦乐器固有频率**，第二是模拟**能量衰减**过程。
+
+吉他拨弦过程，是手对弦上某一点产生一个激励输入，弦系统的某个质点位置开始**简谐振动**，这个振动是由随机大小的激励产生的，其频率是弦的固有频率。这里要明确的是，弦振动的频率不是由手给的激励决定的（手只是给了一个**瞬时的能量冲激**，没有能激发频率的因素），而是由弦固有频率决定的。
+
+> [驻波](https://zh.wikipedia.org/wiki/%E9%A7%90%E6%B3%A2)
+>
+> 每个质点皆作简谐运动，且振幅不同，振幅为零的称波节，振幅最大的称波腹。
+
+KS算法很复杂，我还没有学习（没学过信号与系统，好后悔~~但大二省了很多力气~~）
+
+注意： 实现ArrayRingBuffer时，没有重构数组，超范围就用throw来报错就行了。
+
+自己对迭代器还没有掌握，写这一部分完全参照着课程代码。
+
+最后可以听一听老师放在作业里的歌，是电子风的吉他曲子。（为什么是电子风呢？我是不是哪里出了问题）
+
+当我按照指导加了extends Iterator 后出现了**Class 'ArrayRingBuffer' must either be declared abstract or implement abstract method 'hasNext()' in 'Iterator'**的错误。很不解，看了github许多人的代码，都找不到问题所在，就先且放着
 
 
-  
 
 
 
