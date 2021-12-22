@@ -1,0 +1,98 @@
+{
+  "main": {
+    "id": "2a6d629f76ac1e00",
+    "type": "split",
+    "children": [
+      {
+        "id": "97e8954469b8d381",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "BombLab.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7c7be1fc219906e9",
+    "type": "split",
+    "children": [
+      {
+        "id": "ab6da90dcd36a01b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ff26d38c1bf15194",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "6f69a8b2f076a10b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "76a4142ddcc937ca",
+    "type": "split",
+    "children": [
+      {
+        "id": "ae5cfa4c7b51b434",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "10204bb5fd21a5cf",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "BombLab.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "97e8954469b8d381",
+  "lastOpenFiles": [
+    "BombLab.md",
+    "A-Top-to-Down-Approach.md",
+    "学科实践大数据配置.md",
+    "学习.md",
+    "文史哲摘录与思考（一）.md",
+    "笔记整理.md"
+  ]
+}

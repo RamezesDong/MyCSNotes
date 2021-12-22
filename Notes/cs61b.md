@@ -204,7 +204,7 @@ Union Write the code that returns an array that is the union between two given a
   - all leaves must be the same height from the root
   - no-leaves node with k items must be have exactly k+1 children (A non-leaf node with k children contains k−1 keys)
   - Every non-leaf node (except root) has at least ⌈m⁄2⌉ children.
-- B树的高度范围![image-20211115125947399](C:\Users\Ramezes Dong\AppData\Roaming\Typora\typora-user-images\image-20211115125947399.png)
+- B树的高度范围![image-20211115125947399](https://gitee.com/dongramesez/typora-img/raw/master/img/202111270006895.png)
 - B树各个节点关键码要求
   - 根节点至少含有一个关键码
   - 每个节点至多含m-1个关键码
@@ -213,7 +213,7 @@ Union Write the code that returns an array that is the union between two given a
 
 ​		高度为3的5阶B-树,只多存放?个关键码,至少存放(?)个?
 
-​		最多4 * (1+5+5 * 5) = 124 :最少 1+2 * 2 +2 * 3 * 2 =17![image-20211115130550034](C:\Users\Ramezes Dong\AppData\Roaming\Typora\typora-user-images\image-20211115130550034.png)
+​		最多4 * (1+5+5 * 5) = 124 :最少 1+2 * 2 +2 * 3 * 2 =17![image-20211115130550034](https://gitee.com/dongramesez/typora-img/raw/master/img/202111270006908.png)
 
 
 
@@ -259,15 +259,19 @@ A 2-3 tree with only 2-nodes is trivial,which is exactly same to BST. What do we
   - There are no red right-links.
   - Every path from root to leaf has same number of black links (because 2-3 trees have same number of links to every leaf).
   - Height is no more than 2x height of corresponding 2-3 tree.
-
 - every path from the root to a leaf has the **same number of black links**
+- Root is black
+- Leaves are black
+- Red nodes have black children
 
 Rules
 
 - Right red link -> rotate left
 - Two consecutive left links -> rotate right
 - Red left and red right -> color flip
-- ![image-20211115112212815](C:\Users\Ramezes Dong\AppData\Roaming\Typora\typora-user-images\image-20211115112212815.png)
+- ![image-20211115112212815](https://gitee.com/dongramesez/typora-img/raw/master/img/202111270006909.png)
+
+
 
 #### Hashing
 
@@ -294,8 +298,204 @@ Rules
 - A Simple Hashcode
 
   - equals: use the method like algorithm4 page 65
-
   - Hashcode (perfect version) : red* 53* 53+green *53+blue
+- Complex hashcode's bug
+  - if the hashcode exceeds 256e3, it will overflow to 0.
+  - use add(i) rather than add(some_constant) will built-in hashCode() to pass.
 
-    
 
+### How to use ListIterator() method in Java
+
+- 多种方法遍历 List
+
+```java
+public class CrunchifyIterateThroughList {
+ 
+    public static void main(String[] argv) {
+ 
+        // create list
+        List<String> crunchifyList = new ArrayList<String>();
+ 
+        // add 4 different values to list
+        crunchifyList.add("Facebook");
+        crunchifyList.add("Paypal");
+        crunchifyList.add("Google");
+        crunchifyList.add("Yahoo");
+ 
+        // Other way to define list is - we will not use this list :)
+        List<String> crunchifyListNew = Arrays.asList("Facebook", "Paypal", "Google", "Yahoo");
+ 
+        // Simple For loop
+        System.out.println("==============> 1. Simple For loop Example.");
+        for (int i = 0; i < crunchifyList.size(); i++) {
+            System.out.println(crunchifyList.get(i));
+        }
+ 
+        // New Enhanced For loop
+        System.out.println("\n==============> 2. New Enhanced For loop Example..");
+        for (String temp : crunchifyList) {
+            System.out.println(temp);
+        }
+ 
+        // Iterator - Returns an iterator over the elements in this list in proper sequence.
+        System.out.println("\n==============> 3. Iterator Example...");
+        Iterator<String> crunchifyIterator = crunchifyList.iterator();
+        while (crunchifyIterator.hasNext()) {
+            System.out.println(crunchifyIterator.next());
+        }
+ 
+        // ListIterator - traverse a list of elements in either forward or backward order
+        // An iterator for lists that allows the programmer to traverse the list in either direction, modify the list during iteration,
+        // and obtain the iterator's current position in the list.
+        System.out.println("\n==============> 4. ListIterator Example...");
+        ListIterator<String> crunchifyListIterator = crunchifyList.listIterator();
+        while (crunchifyListIterator.hasNext()) {
+            System.out.println(crunchifyListIterator.next());
+        }
+ 
+        // while loop
+        System.out.println("\n==============> 5. While Loop Example....");
+        int i = 0;
+        while (i < crunchifyList.size()) {
+            System.out.println(crunchifyList.get(i));
+            i++;
+        }
+ 
+        // Iterable.forEach() util: Returns a sequential Stream with this collection as its source
+        System.out.println("\n==============> 6. Iterable.forEach() Example....");
+        crunchifyList.forEach((temp) -> {
+            System.out.println(temp);
+        });
+ 
+        // collection Stream.forEach() util: Returns a sequential Stream with this collection as its source
+        System.out.println("\n==============> 7. Stream.forEach() Example....");
+        crunchifyList.stream().forEach((crunchifyTemp) -> System.out.println(crunchifyTemp));
+    }
+}
+```
+
+
+
+#### Priority Queue
+
+- interface / implementation
+  - Ordered Array
+    - `add`: Θ(*N*)
+    - `getSmallest`:Θ(1)
+    - `removeSmallest`: Θ(*N*)
+  - Bushy BST
+    - `add`: Θ(log*N*)
+    - `getSmallest`: Θ(log*N*)
+    - `removeSmallest`: Θ(log*N*)
+  - HashTable
+    - `add`: Θ(1)
+    - `getSmallest`: Θ(*N*)
+    - `removeSmallest`:Θ(*N*)
+
+##### Application
+
+LeetCode347（数组出现频率前k个）Leetcode239. Sliding Window Maximum
+
+#### Heap （堆）
+
+#### Tries(单词查找树)字典树/前缀树
+
+- 优点：
+  - 1，最坏情况时间复杂度比hash表好
+  - 2，没有冲突，除非一个key对应多个值（除key外的其他信息）
+  - 3，自带排序功能（类似Radix Sort），中序遍历trie可以得到排序。
+
+- 应用：
+
+  - **字符串检索**：事先将已知的一些字符串（字典）的有关信息保存到trie树里，查找另外一些未知字符串是否出现过或者出现频率。
+
+    - 1，给出N 个单词组成的熟词表，以及一篇全用小写英文书写的文章，请你按最早出现的顺序写出所有不在熟词表中的生词。
+    - 2，给出一个词典，其中的单词为不良单词。单词均为小写字母。再给出一段文本，文本的每一行也由小写字母构成。判断文本中是否含有任何不良单词。例如，若rob是不良单词，那么文本problem含有不良单词。
+    - 3，1000万字符串，其中有些是重复的，需要把重复的全部去掉，保留没有重复的字符串。
+
+  - **文本预测**，拼写检查
+
+  - **词频统计**：
+
+    - 1，有一个1G大小的一个文件，里面每一行是一个词，词的大小不超过16字节，内存限制大小是1M。返回频数最高的100个词。
+
+    - 2，一个文本文件，大约有一万行，每行一个词，要求统计出其中最频繁出现的前10个词，请给出思想，给出时间复杂度分析。
+
+    - 3，寻找热门查询：搜索引擎会通过日志文件把用户每次检索使用的所有检索串都记录下来，每个查询串的长度为1-255字节。假设目前有一千万个记录，这些查询串的重复度比较高，虽然总数是1千万，但是如果去除重复，不超过3百万个。一个查询串的重复度越高，说明查询它的用户越多，也就越热门。请你统计最热门的10个查询串，要求使用的内存不能超过1G。
+      (1) 请描述你解决这个问题的思路；
+      (2) 请给出主要的处理流程，算法，以及算法的复杂度。
+
+      ==》若无内存限制：Trie + “k-大/小根堆”（k为要找到的数目）。
+
+      否则，先hash分段再对每一个段用hash（另一个hash函数）统计词频，再要么利用归并排序的某些特性（如partial_sort），要么利用某使用外存的方法。参考
+
+##### [[海量数据问题的处理-六种解决思路 ](https://www.cnblogs.com/GarrettWale/p/14478347.html)] :star:
+
+### A*(A star)
+
+- 为了优化类似平面图这样的找最短路径问题。使用启发式搜索。![image-20211129172818699](https://gitee.com/dongramesez/typora-img/raw/master/img/202111291728797.png)
+
+- f(n) = g(n) + h(n)
+
+  f(n)综合优先级，g(n)n到起点代价,h(n)n到终点的预计代价。
+
+  - h(n) -> 0，退化成dijkstra算法
+  - 如果h(n)的值比节点n到终点的代价要大，则A*算法不能保证找到最短路径，不过此时会很快
+  - h（n）曼哈顿距离，对角距离，欧几里得距离
+  - 用优先队列维护一个备用搜索路线很好
+
+#### lab11
+
+- A* 不知道怎么写
+- 大佬思路：
+  - 定义Node，将节点与f(n)绑定在一起
+  - override `Comparator`
+  - 使用**优先队列**维护栈
+
+#### HW4-A*
+
+- 应用A*，解决谜题
+
+- 定义了interface WorldState，将所有的问题都转化成
+
+  - 估计距离
+  - 相邻情况
+  - 是否到达终点
+
+  使用**Solver**类使用类似Lab11的方法，解决WorldState类的问题。而word，board作为sub-class of WorldState，重写neighbors和estimatedDistanceToGoal。
+
+
+##### Radix Sort
+
+- LSD && MSD (the least significant digit && the most significant digit) Radix Sort
+-  MSD is more efficient than LSD because it may not have examine the every digit of each integer.
+- MSD can be used to sort strings of variable length, unlike LSD.
+- **Time Complexity:** LSD is `O(N*M)` where M is length of longest string. MDS is `O(N)`
+- **Auxiliary Space:** LSD `O(N+B)`,MSD `O(N + MB)`
+
+### Proj3:star:
+
+##### 1.Setup
+
+- getting the skeleton files
+- make the `src/main` directory as a sources root
+- After opening the `localhost:4567/map.html`, I get a map page with no map.
+
+##### 2.The  `getMapRaster` Method
+
+- The hardest part of this project, which return query results of the given `params`![image-20211204205545752](https://gitee.com/dongramesez/typora-img/raw/master/img/202112042055852.png)
+
+-  suppose params = *{ullon=-122.241632, lrlon=-122.24053, w=892.0, h=875.0, ullat=37.87655, lrlat=37.87548}*
+
+  Means: longitude & latitude , and display 892 pixels wide and 875 pixels tall
+
+- At this latitude (38 degree north), each degree of longitude is **S = 288,200 feet**.
+
+  User want a box (122.241632 - 122.....) x S = 317 feet wide, while the screen space is 892 pixels wide. So, the image is roughly 317/892 = 0.355 feet per pixel.
+
+- personal comprehension 
+  - data structure: put all the image
+  - With the detaX & detaY, I can calculate the feet/pixel
+  - ![image-20211209105554771](https://gitee.com/dongramesez/typora-img/raw/master/img/202112091055917.png)
+  -    choose the depth which make  resolution is perfect
+    - Resolution = 49(approximate) / 2^(D-1)
