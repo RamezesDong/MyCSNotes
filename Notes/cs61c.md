@@ -10,7 +10,7 @@ Written in 2021/12/13
 
 
 
-## W1/W2
+## W1/W2/W3 C
 
 ### Intro
 
@@ -154,13 +154,24 @@ Written in 2021/12/13
 
    0x3B +0x06 = 1 not an overflow 尽管有进位但值没有改变，overflow**只有**发生在同符号运算后符号改变
 
-### disc2
+### disc02
 
 [非常好的面试题，:laughing:](https://cs61c.org/fa21/pdfs/discussions/disc02-sols.pdf)
 
 - `gets()` 
 
-## Proj1-Philphix
+### disc03
+
+- The distance between floating point numbers increase as the absolute value of the numbers increase.
+
+  True. If the exponent increase, the difference between two neighboring floats will increase.
+
+- Floating Points addition is associative.
+
+  False. Because of rounding errors, you can find Big and Small numbers such that:
+  (Small + Big) + Big != Small + (Big + Big)
+
+### Proj1-Philphix:star:
 
 1. 环境配置：
    - 使用wsl (windows subsystem for linux)
@@ -217,3 +228,281 @@ Written in 2021/12/13
      ```
 
    - The first string is stored in the **data portion** of memory which is read-only while the second string is stored on the **stack**.
+
+### Lab2
+
+1. [valgrind](https://valgrind.org/docs/manual/mc-manual.html)
+2. [make](https://www.gnu.org/software/make/manual/make.html#Reading)
+
+## W4/W5/W6 RISC-V
+
+### RISC-V Intro
+
+1. Instruction Set Architecture (ISA): Job of  a CPU is execute instructions 
+
+   **Instructions**: CPU’s primitive operations 
+   •Instructions performed one after another in sequence 
+   •Each instruction does a small amount of work (a tiny part of a larger program). 
+   •Each instruction has an operation applied to operands, 
+   •  and might be used to change the sequence of instructions
+
+2. Complex Instruction Set Computer vs. Reduced Instruction Set Computer
+
+   1. x86/x64(servers) and Arm(phones/embedded)
+
+3. Assembly language programming :Each assembly language is tied to a particular ISA (its just a human readable version of machine language).
+
+   For us ... learn to program in assembly language 
+   • Best way to understand what compilers do to generate machine code 
+   • Best way to understand what the CPU hardware does
+
+4. Assembly Variables: Registers![image-20211224144207148](https://gitee.com/dongramesez/typora-img/raw/master/img/202112241442243.png)
+
+5. Speed of Registers vs. Memory
+   - Registers: 32 words(128Bytes)
+   - Memory(DRAM): Billions of bytes 2GB to 16GB on laptop
+   - registers is faster than DRAM 100-500 times.
+
+6. 32 registers in RISC-V, referred to by number x0 – x31
+   - Each RISC-V register is 32 bits wide (RV32 variant of RISC-V ISA) 
+   - Groups of 32 bits called a word in RISC-V ISA 
+   - P&H CoD textbook uses the 64-bit variant RV64 (explain differences later)
+   - x0 is special, always hold zero and can’t be changed 
+
+7. Registers have on type and operations determines how register contents are interpreted.
+
+8. RISC-V Instructions are fixed 32b long.
+
+9. RISC-V Addition and so on...
+   - `add x1, x2, x3` x1 = x2+x3
+   - `sub x3,x4,x4` x3 = x4 +x5
+   - Immediates 
+     - `addi x3,x4,10` x3 = x4 +10
+   - Loading and Storing Bytes
+     - load byte: `lb` word `lw`
+     - store byte: `sb` word `sw`
+     - unsigned byte loads `lbu`
+   - **Remember, RISC-V is “little endian”**
+   - `lb x10,3(x11)` contents of memory location with address  = sum of “3” +contents of register x11 is copied to the low byte position of register x10.
+   - :star:In RISC-V immediates are sign extended, for example![image-20211224153329933](https://gitee.com/dongramesez/typora-img/raw/master/img/202112241533993.png) If we did `lbu` we’d instead get `0xf8`
+   - RISC-V Logical Instructions
+     - `and or xor sll srl/sra`
+     - `slli x11,x12,2` x11 = x12 <<2 
+     - Shift Right Logical `srli`
+     - Arithmetic Shifting `srai`
+   - Decision Making /Control Flow Instructions
+     - `beq register1,register2,L1` go to instruction labeled L1 if reg1 == reg2
+     - `bne` for branch if not equal
+     - `j`  jump
+     - `blt reg1,reg2, label`  <
+     - `bltu` < and treat registers as unsigned integers
+     - `bgt` > `bge` >=
+     - `jal rd immd` use immediate(20bits) encoding for destination address and can jump +- 1MB range. And actual `address + 4` in register `rd`
+     - `jalr rd immd(x1)` use indirect address (x1 in example) plus a constant of 12 bits. It save the actual `address + 4` in register `rd`
+   
+10. Register Conventions
+    - Symbolic register names :a0-a7 for argument registers (x10-x17);zero for x0
+    
+    - The RISC-V Registers and Convention
+    
+    - The "Application Binary Interface" defines our 'calling  convention'
+    
+    - ![image-20211224163237469](https://gitee.com/dongramesez/typora-img/raw/master/img/202112241632532.png)Yes in the column referred to as **callee-saved** and those with No as **caller-saved**
+    
+      函数调用中的其他寄存器，要么被当做保存寄存器前后值不变，要么当临时寄存器，在函数调用中不保留。YES---callee-saved 表示被保留的
+    
+    - ![image-20211224164435595](https://gitee.com/dongramesez/typora-img/raw/master/img/202112241644646.png)
+    
+11. RV32 Memory Allocation![image-20211224170102093](https://gitee.com/dongramesez/typora-img/raw/master/img/202112241701175.png)
+    - static data segment (constants and other static variables) above text for static variables 
+      •RISC-V convention global pointer (gp) points to static 
+      •RV32 gp = 1000_0000hex
+
+### How to Implement Function in RISC-V
+
+1. Six Fundamental Steps in Calling a Function
+   1. Put parameters in a place where function can access them 
+   2. Transfer control to function 
+   3.  Acquire (local) storage resources needed for function 
+   4.  Perform desired tas of the function 
+   5.  Put result value in a place where calling code can access it and maybe restore any registers you used
+   6.  Return control to point of origin.  
+      (Note: a function can be called from several points in a program, including from  itself.)
+2. **Caller**: a procedure that calls one or more more subsequent procedure(s).
+3. **Callee**: a procedure that is called by another.
+4. **Application Binary Interface (ABI)**: a standard for register usage and memory layout that allows for programs that are not compiled together to interact effectively.
+5. **Calling Conventions**: a subset of an ABI specifically focused on how data is passed from one procedure to another.
+6. Use `jar` return address is saved in register `ra`
+
+### RISC-V Instruction Formats
+
+1. Why?
+
+   - Consequence #1: Everything has a memory address
+     - instructions, data words, have a memory address
+     - PC: program counter is basically a pointer to memory which be called Instruction Pointer by Intel
+   - #2: Binary Compatibility
+     - New machines in the same family want to run old programs  (“binaries”) as well as programs compiled to new instructions
+
+2.  Instruction as Numbers
+
+   - Divide 32-bit instruction word into “field”
+   - Each field tells processor something about instruction 
+   - For hardware simplicity, group possible instructions into six basic types of instruction formats:
+
+     - R-format for register-register arithmetic/logical operations
+     - I-format for register-immediate ALU operations and loads
+     - S-format for stores
+     - B-format for branches
+     - U-format for 20-bit upper immediate instructions 
+     - J-format for jumps
+     - ![image-20211224230500138](https://gitee.com/dongramesez/typora-img/raw/master/img/202112242305238.png)
+   - R-Format Instructions register specifiers
+   
+     - rs1(Source Register 1) rs2 rd(Destination Register)
+     - ![image-20211225000750312](https://gitee.com/dongramesez/typora-img/raw/master/img/202112250007424.png)
+   - I-format instruction Layout
+   
+     - Immediate is always sign-extended to 32-bits before use in an arithmetic/logic operation
+     - ![image-20211225001453196](https://gitee.com/dongramesez/typora-img/raw/master/img/202112250014303.png)
+   
+     - **Load Instructions are also I-Type**
+     - ![image-20211225001603531](https://gitee.com/dongramesez/typora-img/raw/master/img/202112250016613.png)
+   - S-Format Used for Stores
+
+     - Store needs to read two registers,`rs1` is base memory address and `rs2` for data to be stored, as well as need immediate offset!
+     - ![image-20211225002259952](https://gitee.com/dongramesez/typora-img/raw/master/img/202112250023015.png)
+   - B - Format
+     - Branches typically used for loops (if-else, while, for ). Loops are generally small (<50 instructions)
+     - `BEQ x1, x2, Label`
+       - If we don’t take the branch:  PC = PC + 4 (i.e., next instruction)
+       - If we do take the branch: PC = PC + immediate
+     - 12-bits immediate , could specify +- 2^11 byte address offset from the PC. However, extensions to RISC-V base ISA support 61-bit compressed instructions and also variable-length instructions that are multiples of 2-Bytes in length.
+     - RISC-V scales the branch immediate by 2 bits--- so RISC-V conditional branches can only reach +-2^10 *32 -bit
+     - ![image-20211225101922323](https://gitee.com/dongramesez/typora-img/raw/master/img/202112251019433.png)
+   - U-Format for “Upper Immediate” instructions
+     - ![image-20211225102403742](https://gitee.com/dongramesez/typora-img/raw/master/img/202112251024787.png)
+     - LUI to create long immediates
+     - How to set 0xDEADBEEF![image-20211225102823359](https://gitee.com/dongramesez/typora-img/raw/master/img/202112251028403.png)
+   - J- Format for Jump Instructions
+     - ![image-20211225103430920](https://gitee.com/dongramesez/typora-img/raw/master/img/202112251034991.png)
+     - ![image-20211225103529434](https://gitee.com/dongramesez/typora-img/raw/master/img/202112251035487.png)
+
+### CALL (Compiler/ Assembler/ Linker/ Loader)
+
+1.Interpretation vs. Compilation
+
+- An Interpreter is a program that executes other programs![image-20211226165657564](https://gitee.com/dongramesez/typora-img/raw/master/img/202112261656628.png)
+- Language translation gives us another option
+- In general, we interpret a high-level language when efficiency is not critical and translate to a lower-level language to increase performance.
+- How do we run a program written in a source langugae?
+  - Interpreter: Directly executes a program in the source language
+  - Translator: Converts a program from the source language to an equivalent program in another language.
+- Translator reaction: add extra information to help debugging (line  numbers, names): 
+  This is what gcc -g does, it tells the compiler to add all the debugging information
+- Interpreter closer to high-level, so can give better error messages. slower(10x? ), code smaller(2x or not?) And it provides instruction set independence: run any machine
+- complied/ translated code almost always more efficient and therefore higher performance. -- Using for operating system
+- Compiled  code does the hard work once: during compilation.
+  - Which is why most “interpreters” these days are really “just in time compilers”: 
+    don’t throw away the work processing the program when you reexecute a function
+  - Especially of web browsers
+
+2. CALL chain
+
+   - ![image-20211226210804780](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262108868.png)
+   - High-level language code transform to assembly language code (foo.s for RISC-V)
+     - Note: output may contain **pseudo-instructions** (assembler understand but not in machine)
+     - Steps in the complier![image-20211226211202661](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262112719.png)
+   - Assembler: A dumb complier for assembly language 
+     - foo.s -> foo.o (object code, information tables)
+     - Read and use Directives
+     - replace pseudo-instructions
+     - Produce **Machine Language** rather than just **Assembly Language**
+     - Assembler Directives![image-20211226211559314](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262115375.png)
+     - `tail offset` ![image-20211226212113975](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262121029.png)
+
+3. Producing Machine Language
+
+   - What about branches? Forward Reference problem
+
+   - Solved by taking 2 passes over the program
+
+     - First pass remembers position of labels (Can do this when we expand pseudo instructions )
+     - Second pass uses label positions to generate code
+
+   - What about jumps(`j jal`)
+
+     - Jumps within a file are PC relative (and we can easily compute) 
+     - Jumps to other files we can’t
+
+   - What about reference to static data?
+
+     - `la`
+
+   - The two questions can’t be determined yet, so we can create two tables
+
+     - Symbol Table: may be used by other file
+
+        Lables (function calling) Data: anything in .data section
+
+     - Relocation Table: List of  “items” files need the address of later
+
+       the `jal` labels and any piece of data in static section(`la`)
+
+   - Object File Format![image-20211226215105763](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262151821.png)
+
+4. Linker!!
+
+   - Input: object code files with information tables
+   - output: Executable code (a.out)
+   - Enable separate compilation of files
+   - ![image-20211226215643145](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262156199.png)
+   - After taking each .0 file text and data segment, Resolve references
+     - Go through Relocation Table; handle each entry 
+     - That is, fill in all absolute addresses
+   - Three Types of addresses
+     - PC- relative (**Never relocate**)
+     - extern function reference (only external jumps)
+     - static data reference (auipc addi)
+   - Resolving References![image-20211226220229148](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262202198.png)
+
+5. Loader
+
+   - In reality, loader is the operating system (OS)
+
+6. Static vs. Dynamically Linked Libraries
+
+### disc04
+
+1. `slti rd, rs1, imm` place the value 1 in register `rd` if register `rs1` less than the sign extended immediate number, else 0 is written to `rd` 
+2.  notice that using `addi`to add immediate rather than `add`. 
+3. When do we save the registers maybe overriding? To write a **prologu**e and
+   **epilogue** to account for the registers you used, when you call the callee-function.
+
+### lab3
+
+- [RISCV-CARD](https://inst.eecs.berkeley.edu/~cs61c/resources/riscvcard.pdf)
+
+- venus is  an interesting web-service for risc-v assembly language.
+
+- `la` pseudo-instructions
+
+  `la rd, symbol` means that `auipc rd, symbol[31:12]; addi rd, rd, symbol[11:0]` For loading address. 
+
+- difference from the `jal` and `jalr`
+  - `jal` use immediate (20bits) encoding for destination address
+  - `jalr` use indirect address `x1` plus 12bits constant `jalr x0,0(x1)`
+
+- linked-list To be noticed the `jalr` and the contrast between address and value.
+
+  The a0 (a linked-list node is address) but the a1(function) is the label bias which exactly is a value. 
+
+### Proj2-Classify
+
+1. [A list of standard RISC-V pseudo instructions](https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md#a-listing-of-standard-risc-v-pseudoinstructions)
+2. `li rd, immediate` (Based instructions are Myriad sequences ) Load immediate
+
+3. Need to learn use the pseudo instructions, such as `mv li j `
+
+4. Using a skill to write the exit function. 
+

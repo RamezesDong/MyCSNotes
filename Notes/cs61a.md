@@ -658,3 +658,57 @@ aFunc = ATTR(aFunc)
 1. Linked List
 2. Trees (is a class)
 
+### hw6
+
+1. `deep_map_mut` deep search and mutate. Just remember that the link like a pionter changed directly. 
+
+2. VirFib  use the method of object-oriented programming to solve the VirFib problems.   The `next` method return a `VirFib` instance with only constant time.
+
+## W9
+
+### Efficiency
+
+1. Exponentiation ((in a [mathematical](https://www.collinsdictionary.com/zh/dictionary/english/mathematical) [equation](https://www.collinsdictionary.com/zh/dictionary/english/equation)) the use of an [exponent](https://www.collinsdictionary.com/zh/dictionary/english/exponent) to [raise](https://www.collinsdictionary.com/zh/dictionary/english/raise) the [value](https://www.collinsdictionary.com/zh/dictionary/english/value) of the [base](https://www.collinsdictionary.com/zh/dictionary/english/base) number to a [power](https://www.collinsdictionary.com/zh/dictionary/english/power))
+   - 
+2. Orders of Growth
+   - Exponential growth
+   - Quadratic growth
+   - Linear growth
+   - Logarithmic growth
+   - Constant growth
+3. Memorization is a strategy to reduce redundant computation by remembering the results of previous function calls in a “memo”
+
+### Decomposition
+
+1. Modules
+
+   ```python
+   import link #importing a whole module
+   ll = link.Link(3,link.Link(4))
+   from link import Link # Importing specific namesll = link.Link(3,link.Link(4))
+   ll = Link(3,Link(4))
+   from link import * #importing all the names
+   ```
+
+- alias `from link import Link as LL`
+
+- Running a module `python module.py` When run like that, Python sets a global variable `__name__` to ‘’main”.
+
+  ```python
+  if __name__ == "__main__":
+  ```
+
+  The code inside the condition will be executed as well, but only the module is run directly.
+
+2. Packages
+
+   - Importing a whole path: 
+
+     ```python
+      import sound.effects.echo 
+      sound.effects.echo
+     ```
+
+   - `from sound.effects import echo`
+
+3. Modular design: A design principle: Isolate different parts of a program that address different concerns
