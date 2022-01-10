@@ -10,6 +10,12 @@ Written in 2021/12/13
 
 
 
+### Useful Docs
+
+[RISC-V CARD](https://github.com/jameslzhu/riscv-card/blob/master/riscv-card.pdf)
+
+
+
 ## W1/W2/W3 C
 
 ### Intro
@@ -378,7 +384,7 @@ Written in 2021/12/13
        - If we don’t take the branch:  PC = PC + 4 (i.e., next instruction)
        - If we do take the branch: PC = PC + immediate
      - 12-bits immediate , could specify +- 2^11 byte address offset from the PC. However, extensions to RISC-V base ISA support 61-bit compressed instructions and also variable-length instructions that are multiples of 2-Bytes in length.
-     - RISC-V scales the branch immediate by 2 bits--- so RISC-V conditional branches can only reach +-2^10 *32 -bit
+     - **RISC-V scales the branch immediate by 2 bits--- so RISC-V conditional branches can only reach +-2^10 *32 -bit(+-2^10 for 4-byte instructions)**
      - ![image-20211225101922323](https://gitee.com/dongramesez/typora-img/raw/master/img/202112251019433.png)
    - U-Format for “Upper Immediate” instructions
      - ![image-20211225102403742](https://gitee.com/dongramesez/typora-img/raw/master/img/202112251024787.png)
@@ -441,11 +447,11 @@ Written in 2021/12/13
 
    - The two questions can’t be determined yet, so we can create two tables
 
-     - Symbol Table: may be used by other file
+     - **Symbol Table**: may be used by other file
 
         Lables (function calling) Data: anything in .data section
 
-     - Relocation Table: List of  “items” files need the address of later
+     - **Relocation Table**: List of  “items” files need the address of later
 
        the `jal` labels and any piece of data in static section(`la`)
 
@@ -501,8 +507,199 @@ Written in 2021/12/13
 
 1. [A list of standard RISC-V pseudo instructions](https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md#a-listing-of-standard-risc-v-pseudoinstructions)
 2. `li rd, immediate` (Based instructions are Myriad sequences ) Load immediate
-
 3. Need to learn use the pseudo instructions, such as `mv li j `
-
 4. Using a skill to write the exit function. 
+4. The `classify.s` is not completed, whose bugs bother me.
+
+### Lab4
+
+The exercise 4 is not finished. I am too undisciplined to write my own tests.
+
+### Dis05
+
+1. [von Neumann architecture - Wikipedia](https://en.wikipedia.org/wiki/Von_Neumann_architecture)
+   - A processing unit that contains an arithmetic logic unit and processor registers
+   - A control unit that contains an instruction register and program counter
+   - Memory that stores data and instructions
+   - External mass storage
+   - Input and output mechanisms
+   
+2. Stored-program computer is a computer that stores program instructions in electronically or optically accessible memory. This contrasts with systems that stored the program instructions with [plugboards](https://en.wikipedia.org/wiki/Plugboard) or similar mechanisms. 
+
+3. ![image-20220103165218008](https://gitee.com/dongramesez/typora-img/raw/master/img/202201031652068.png)
+
+4. What is the maximum range of 32-bit instructions that can be reached from the current PC using a jump instruction?
+
+   This question is like that what is the range of 32-bit instructions ......from the current PC using a **branch** instruction? The difference between them is the immediate bits numbers.
+
+## W7/W8/ Digital Systems
+
+### Into to Digital Circuits or Synchronous Digital Systems
+
+1. Synchronous
+
+   Heartbeat of the system!
+
+2. Why Binary Representation?
+   - Reliability - good noise immunity.
+
+3. Logic Gates![image-20211228164858556](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281648617.png)
+
+4. **clk-to-q delay** Like logic gates, registers also have a delay associated with them before their output will reflect the input that was sampled.
+
+5. Single bit compare circuit: aka exclusive-nor (xnor) aka is also known as
+
+6. ![image-20211228165430887](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281654956.png)
+
+7. State Elements:
+
+8. Memory elements (aka “state elements”) allow our circuit to “remember” - retain values from one time to the next.
+
+9. Only two types of circuits exist
+   - Combinational Logic Blocks (CL)
+   - State Elements (registers, memories)
+
+10. Finite State Machine(FSM): Adding registers to CL , aka “sequential circuits”
+   - Example sequential circuits (Program counter) PC ![image-20211228170256624](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281702672.png)
+   - The cMOS register circuits in common 
+     use are “edge-triggered” 
+     - ![image-20211228171332627](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281713664.png)
+   - Sequential circuits with feedback are often modeled as finite state machines
+
+11. ![image-20211228171142526](C:/Users/Ramezes%20Dong/AppData/Roaming/Typora/typora-user-images/image-20211228171142526.png)
+
+12. Introduction the “multiplexor”, aka “mux”
+
+    - ![image-20211228172100756](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281721801.png)
+    - ![image-20211228172434540](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281724596.png)
+
+13. MOS transistor: nFET (Three electrical terminals: gate, source, drain)
+
+    - ![image-20211228172618825](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281726874.png)
+
+    - ![image-20211228173003976](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281730038.png)
+
+14. Nasty realities: 
+    - Delays in CMOS circuits
+      - transistors as water values
+      - Consequences:  the delay time 
+      - ![image-20211228173941657](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281739688.png)
+    - CMOS circuits use electrical energy (consume power)
+
+### DIS6
+
+1. The fewer gates the faster the circuit (assuming they all have the same delay).
+   - False. A wide circuit with more gates can have less delay than just a few gates arranged in sequence.
+2. What is hold time, setup time and **tlk-2-q** time ? 保持时间需要足够长，来保证采样的正确性,保持时间算在`tlk-to-q` 中，所以`tlk-2-q` >=保持时间
+
+### RISC-V Processor Design
+
+#### Part 1 :The Datapath
+
+You COU in two parts:
+
+- Data path: contains the hardware necessary to 
+  performoperations required by the processor
+- Control: decides what each piece of the datapath should do 
+
+1. State required by RV32I ISA
+
+   - Registers(x0 x31)
+   - Program Counter
+   - Memory (MEM)
+
+2. Basic Phase of Instruction Execution
+
+   ![image-20211229094713122](https://gitee.com/dongramesez/typora-img/raw/master/img/202112290947206.png)
+
+3. ![image-20211229101001070](https://gitee.com/dongramesez/typora-img/raw/master/img/202112291010142.png)
+
+3. `BrEq BrLT` is used in the Branch Compare. `BrUn = 1` selects unsigned comparison for `BrLT`, 0=signed. 
+
+3. ![image-20220108103434171](https://gitee.com/dongramesez/typora-img/raw/master/img/202201081034270.png)
+
+4. Conclusion![image-20211229110739214](https://gitee.com/dongramesez/typora-img/raw/master/img/202112291107287.png)
+
+#### Part 2: RICS-V Control & Operating Speed
+
+1. Controller
+   - ![image-20220107163133724](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071631847.png)
+   - Notes: Instruction type encoded using only 9 bits `inst[30] inst[14:21], inst[6:2]`
+   - ![image-20220107163307602](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071633683.png)
+   - Rom Controller Implementation 
+     - ROM is common for CISC ISAs (like x86) but is less common for RISC ISAs (like RISC-V). 
+     - Can be easily reprogrammed during the design process to `fix errors and add instructions`
+   - ![image-20220107163355075](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071633152.png)
+   - Combinatorial Logic
+     - Used in real-world RISC-V systems.
+2. Instruction Timing
+   1. Typical Approximate Worst -Case Instruction Timing
+      - ![image-20220107164039373](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071640447.png)
+   2. Performance Measure
+      1. The Iron Law of processor performance .
+      2. ![image-20220107164325374](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071643419.png)
+      3. ![image-20220107164452352](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071644428.png)
+      4. ![image-20220107164510602](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071645660.png)
+      5. ![image-20220107175514558](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071755621.png)
+      6. ![image-20220107175628385](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071756453.png)
+      7. ![image-20220107175726036](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071757102.png)
+
+
+#### Part3: Pipelining
+
+1. A familiar example:
+   - ![image-20220107180054232](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071800330.png)
+   - ![image-20220107180125334](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071801393.png)
+
+2. Pipelined RISC-V DataPath
+   - ![image-20220107180411898](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071804963.png)
+
+3. ![image-20220107200609455](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072006576.png)
+4. ![image-20220107200627749](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072006851.png)
+5. Pipeline Hazards
+   - ![image-20220107200756059](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072007139.png)
+   - ![image-20220107201749713](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072017800.png)
+   - ![image-20220107201822975](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072018042.png)
+   - ![image-20220107215942343](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072159425.png)
+   - ![image-20220107221733421](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072217510.png)
+     - Solution 1: Stalling
+     - Solution 2: Forwarding(grab operand from pipeline stage, rather than register file)
+   - ![image-20220107222325290](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072223373.png)
+   - ![image-20220107222910679](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072229760.png)
+6. Superscalar Processors
+   - What is the CPI? Cycles Per Instruction
+   - ![image-20220107230928389](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072309468.png)
+7. 5 Phase of execution
+   - IF, ID ,EX, MEM, WB	
+
+### Dis 07
+
+1. Explain the 5 phase of execution
+   1. IF: Instruction Fetch: Send address to instruction memory (IMEM), and read IMEM at that address.
+   2. ID Instruction Decode: Generate control signals from the instruction bits, generate the immediate, and read registers from the RegFile.
+   3. EX: Execute: Perform ALU operations, and do branch comparison
+   4. MEM Memory: Read from or write to the data memory (DMEM)
+   5. WB Write Back: Write back either PC+4, the result of the ALU operation, or data from memory to the RegFile.
+
+### Proj3 CPU :star:
+
+1. How to resolve the immediate selection and register selection with a explicate structure?
+   - 串联多路选择器
+   - ![image-20220108160421688](https://gitee.com/dongramesez/typora-img/raw/master/img/202201081604741.png)
+   - Immediate Generator 
+   - ![image-20220108221503009](https://gitee.com/dongramesez/typora-img/raw/master/img/202201082215084.png)
+   - 
+
+## W9/W10 Memory Hierarchy, Caches
+
+### Memory Hierarchy Overview
+
+1. Principle of Locality: Programs access only a small portion of the full address space at any instant of time
+2. Temporal Locality (locality in time)
+3. Spatial Locality (locality in space)
+4. ![image-20220109155854748](https://gitee.com/dongramesez/typora-img/raw/master/img/202201091558848.png)
+5. ![image-20220109160026665](https://gitee.com/dongramesez/typora-img/raw/master/img/202201091600725.png)
+6. ![image-20220109173053188](https://gitee.com/dongramesez/typora-img/raw/master/img/202201091730264.png)
+7. Fully Associative Caches
+   1. Each memory block can map anywhere in the cache
 
