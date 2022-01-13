@@ -712,3 +712,156 @@ aFunc = ATTR(aFunc)
    - `from sound.effects import echo`
 
 3. Modular design: A design principle: Isolate different parts of a program that address different concerns
+
+   The way to isolate in Python:
+
+   - Functions
+   - Classes
+   - Modules
+   - Packages
+
+### Data Examples
+
+### Lab08
+
+1. Prune Small. What is the most difficult for me is that the question is a fixed format fill-in-blank questions.
+
+   ```python
+   def prune_small(t, n):
+   	while len(t.branches) > n:
+   		largest = max(t.branches, key=lambda x: x.label)
+    		t.branches.remove(largest)
+   	 for b in t.branches:
+    		prune_small(b, n)
+   ```
+
+2. `max(iterable, *iterables, key, default)`
+
+   - **iterable** - an iterable such as list, tuple, set, dictionary, etc.
+   - ***iterables (optional)** - any number of iterables; can be more than one
+   - **key (optional)** - key function where the iterables are passed and comparison is performed based on its return value
+   - **default (optional)** - default value if the given iterable is empty
+
+   - We can have passed a lambda function to the `key` parameter.
+
+## W10
+
+### Lab 09: Midterm Review
+
+## W11
+
+### Scheme
+
+1. Scheme expressions
+
+   - [Genealogical tree of programming languages](https://upload.wikimedia.org/wikipedia/commons/2/25/Genealogical_tree_of_programming_languages.svg)
+   - [Scheme Built-In Procedure Reference | CS 61A Spring 2022](https://cs61a.org/articles/scheme-builtins/#general)
+   - Scheme is a good example of a functional programming language.
+   - Scheme programs consist of expressions, which can be:
+     - Primitive expressions: `2` `3.3` `#t` `#f` `+` `quotient`
+     - Combinations: `(quotient 10 2)` `(not #t)`
+
+2. Special forms
+
+   - [CS 61A Scheme Specification | CS 61A Spring 2022](https://cs61a.org/articles/scheme-spec/#special-forms-2)
+
+   - define form:  Evaluates `<expression>` and binds the value to `<name>` in the current environment. `<name>` must be a valid Scheme symbol.
+
+     ```scheme
+     (define x 2)
+     ```
+
+   - define procedure
+
+   - If expression: `if <predicate> <consequent> <alternative>`
+
+     ```scheme
+     (define nums '(1 2 3))
+     (if (null? nums) 0 (length nums))
+     ```
+
+   - and form: `(and [test] ...)`
+
+   - or form:  `(or [test] ...)`
+
+   - lambda expressions: `(lambda ([param] ...) <body> ...)`
+
+     - Two equivalent expressions:
+
+     - ```scheme
+       (define (plus4 x) (+ x 4))
+       (define plus4 (lambda (x) (+ x 4)))
+       ```
+
+   - Cond form
+
+     - ```scheme
+       (cond ((> x 10) (print 'big))
+           ((> x 5) (print 'medium))
+           (else (print 'small)))
+       ```
+
+   -  The begin form
+   - let form: The `let` special form binds symbols to values temporarily; just for one expression
+
+3. Scheme List
+
+   - Scheme lists are linked lists.
+   - Scheme use the cons form`(cons 1 (cons 2 nil))`. `nil` is the empty list.
+   - `car`: Procedure that returns the first element of a list
+   - `cdr`: Procedure that returns the rest of the list
+
+4. Quotation
+
+   Symbolic programming. Symbols typically refer to values. **Quotation** is used to refer to symbols directly. `(list 'a 'b)  ; (a b) (list 'a b)   ; (a 2)` The `‘` is shorthand for the `quote` form.
+
+
+
+### Lab10
+
+scheme这种函数式语言，运算符在左，比较抽象难以适应。Scheme作为Lisp的一种方言,有很强的代表意义,影响了在它之后的许多语言。
+
+Lisp诞生之时，就包含了9种新思想。而这九种新思想也在各种语言中出现。
+
+- 条件结构
+- 函数也是一种数据类型。
+- 递归
+- 变量的动态类型。
+- 垃圾回收机制。
+- 程序由表达式组成。
+- 符号（symbol）类型。
+- 代码使用符号和常量组成的树形表示法（notation）。
+- 无论什么时候，整个语言都是可用的。
+
+### HW 07
+
+[介绍 | Scheme 语言简明教程](https://wizardforcel.gitbooks.io/teach-yourself-scheme/content/index.html)
+
+### Exceptions
+
+1. A Scheme Expression is a Scheme List
+2. Quasiquotation
+   1. ![image-20220113124412417](https://gitee.com/dongramesez/typora-img/raw/master/img/202201131244516.png)
+3. ![image-20220113124503317](https://gitee.com/dongramesez/typora-img/raw/master/img/202201131245364.png)
+4. Exceptions: An **exception** is a built-in mechanism in a programming language to declare and respond to "exceptional" conditions.
+5. Exception in Python [exceptions docs](https://inst.eecs.berkeley.edu/~cs61a/fa21/assets/slides/28-Exceptions.html#/10)
+6. Assert statements: Assert statements raise an exception of type `AssertionError`.
+7. Raise statements
+
+### Calculator
+
+- Programming languages
+  - ![image-20220113130045288](https://gitee.com/dongramesez/typora-img/raw/master/img/202201131300348.png)
+- Parsing a language
+  - A parser takes text and returns an expression object.
+  - ![image-20220113130336762](https://gitee.com/dongramesez/typora-img/raw/master/img/202201131303814.png)
+  - ![image-20220113130527474](https://gitee.com/dongramesez/typora-img/raw/master/img/202201131305547.png)
+  - 
+- The Calculator language
+  - ![image-20220113130710692](https://gitee.com/dongramesez/typora-img/raw/master/img/202201131307763.png)
+  - ![image-20220113130807745](https://gitee.com/dongramesez/typora-img/raw/master/img/202201131308815.png)
+- Evaluating a language
+  - ![image-20220113131000294](https://gitee.com/dongramesez/typora-img/raw/master/img/202201131310375.png)
+- Interactive interpreters
+  - ![image-20220113132214547](https://gitee.com/dongramesez/typora-img/raw/master/img/202201131322640.png)
+

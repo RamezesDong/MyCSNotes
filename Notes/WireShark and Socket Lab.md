@@ -8,7 +8,7 @@
 
 A Packet sniffer structure
 
-![image-20211029204927298](WireShark and Socket Lab/image-20211029204927298.png)
+![image-20211029204927298](https://gitee.com/dongramesez/typora-img/raw/master/img/202201132055846.png)
 
 ## Socket Labs
 
