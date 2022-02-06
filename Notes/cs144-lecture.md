@@ -16,7 +16,7 @@
 
 ### 2.The four layer of internet model
 
-![image-20211021125610023](F:\gitandhub\MyCSNotes\Notes\cs144-lecture\image-20211021125610023.png)
+![image-20211021125610023](https://gitee.com/dongramesez/typora-img/raw/master/img/202201260858000.png)
 
  - Link: Deliver data over a single link between an end host and router 
 
@@ -24,19 +24,19 @@
 
    ​	Network layer packets are called datagrams(数据包)
 
-   ![image-20211021125314048](F:\gitandhub\MyCSNotes\Notes\cs144-lecture\image-20211021125314048.png)
+   ![image-20211021125314048](https://gitee.com/dongramesez/typora-img/raw/master/img/202201260858007.png)
 
  - Transport :The most common Transport layer is TCP
 
    ​	UDP: don't  need reliable delivery
 
-- ![image-20211021131004418](F:\gitandhub\MyCSNotes\Notes\cs144-lecture\image-20211021131004418.png)
+- ![image-20211021131004418](https://gitee.com/dongramesez/typora-img/raw/master/img/202201260858008.png)
 
   ​	注意： 各个层常用的协议
 
 - the 7-layer OSI Model
 
-  ![image-20211021131351525](F:\gitandhub\MyCSNotes\Notes\cs144-lecture\image-20211021131351525.png)
+  ![image-20211021131351525](https://gitee.com/dongramesez/typora-img/raw/master/img/202201260858009.png)
 
 ### 3.The IP service
 
@@ -47,7 +47,7 @@
 | Best effort    | ... but only if necessary                         |
 | Connectionless | No per-flow state. Packets might be mis-sequenced |
 
-![image-20211023162621561](cs144-lecture/image-20211023162621561.png)
+![image-20211023162621561](https://gitee.com/dongramesez/typora-img/raw/master/img/202201260858010.png)
 
 - IP creates a datagrams with information in its header ,which contains the IP address of the destination and the IP address of the source (IP DA & IP SA)
 
@@ -61,11 +61,11 @@
 
 - Connectionless : When we made a Skype call lasting several minutes , IP layer maintains no knowledge of the call, and simply routes each datagram **individually and independently ** of all the others.
 
-- ![image-20211023165815483](cs144-lecture/image-20211023165815483.png)
+- ![image-20211023165815483](https://gitee.com/dongramesez/typora-img/raw/master/img/202201260858011.png)
 
-- ![image-20211023171104866](cs144-lecture/image-20211023171104866.png)
+- ![image-20211023171104866](https://gitee.com/dongramesez/typora-img/raw/master/img/202201260858012.png)
 
-- ![image-20211023172007797](cs144-lecture/image-20211023172007797.png)
+- ![image-20211023172007797](https://gitee.com/dongramesez/typora-img/raw/master/img/202201260858013.png)
 
    - The protocol ID: transport protocol 
      The Internet Assigned Numbers Authority (IANA) defines over 140 transport protocol

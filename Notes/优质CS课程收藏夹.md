@@ -7,3 +7,7 @@
 1. [MIT 6.830/6.814: Database Systems](http://dsg.csail.mit.edu/6.830/assign.php)
 2. 
 
+## 人工智能
+
+1.[cs188](https://inst.eecs.berkeley.edu/~cs188/sp21/)
+

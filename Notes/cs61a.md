@@ -748,6 +748,68 @@ aFunc = ATTR(aFunc)
 
 ### Lab 09: Midterm Review
 
+1. `subseqs` fill in the blanks. It is hard to have an inspiration. 
+
+2. ```python
+   def subseqs(s):
+       """Return a nested list (a list of lists) of all subsequences of S.
+       The subsequences can appear in any order. You can assume S is a list.
+   
+       >>> seqs = subseqs([1, 2, 3])
+       >>> sorted(seqs)
+       [[], [1], [1, 2], [1, 2, 3], [1, 3], [2], [2, 3], [3]]
+       >>> subseqs([])
+       [[]]
+       """
+       if len(s) == 0:
+           return [[]]
+       else:
+           subset = subseqs(s[1:])
+           return insert_into_all(s[0], subset) + subset
+   ```
+
+3. ```python
+   def non_decrease_subseqs(s):
+       """Assuming that S is a list, return a nested list of all subsequences
+       of S (a list of lists) for which the elements of the subsequence
+       are strictly nondecreasing. The subsequences can appear in any order.
+   
+       >>> seqs = non_decrease_subseqs([1, 3, 2])
+       >>> sorted(seqs)
+       [[], [1], [1, 2], [1, 3], [2], [3]]
+       >>> non_decrease_subseqs([])
+       [[]]
+       >>> seqs2 = non_decrease_subseqs([1, 1, 2])
+       >>> sorted(seqs2)
+       [[], [1], [1], [1, 1], [1, 1, 2], [1, 2], [1, 2], [2]]
+       """
+       def subseq_helper(s, prev):
+           if not s:
+               return [[]]
+           elif s[0] < prev:
+               return subseq_helper(s[1:], prev)
+           else:
+               a = subseq_helper(s[1:], s[0])
+               b = subseq_helper(s[1:], prev)
+               return insert_into_all(s[0], a) + b
+       return subseq_helper(s , 0)
+   
+   ```
+
+3. [Catalan number - Wikipedia](https://en.wikipedia.org/wiki/Catalan_number)卡特兰数
+4. ![image-20220115083536970](https://gitee.com/dongramesez/typora-img/raw/master/img/202201150835015.png)
+5. 表达式![image-20220115083611805](https://gitee.com/dongramesez/typora-img/raw/master/img/202201150836842.png)
+6. 证明：![image-20220115084817611](https://gitee.com/dongramesez/typora-img/raw/master/img/202201150848660.png)
+7. 卡特兰数应用：
+   1. C_n 表示*2n*的[dyck word](https://zh.wikipedia.org/w/index.php?title=Dyck_word&action=edit&redlink=1)的个数。Dyck词是一个有*n*个X和*n*个Y组成的字串，且所有的前缀字串皆满足X的个数大于等于Y的个数。
+   2. 将上例的X换成左括号，Y换成右括号，*C**n*表示所有包含*n*组括号的合法运算式的个数：
+   3. *C_n*表示有*n*个节点组成不同构[二叉树](https://zh.wikipedia.org/wiki/二叉树)的方案数。
+   4. *C**n*表示有*2n+1*个节点组成不同构满[二叉树](https://zh.wikipedia.org/wiki/二叉树)的方案数。
+   5. *C**n*表示所有在*n* × *n*格点中不越过对角线的**单调路径**的个数。一个单调路径从格点左下角出发，在格点右上角结束，每一步均为向上或向右。
+   6. *C**n*表示通过连结顶点而将*n* + 2边的[凸多边形](https://zh.wikipedia.org/wiki/凸多边形)分成[三角形](https://zh.wikipedia.org/wiki/三角形)的方法个数。
+   7. 还有许多种应用，见Wikipedia
+8. Generators：我对于Gemerators的理解还不够深刻，`merge`没有看懂题意
+
 ## W11
 
 ### Scheme
@@ -848,6 +910,41 @@ Lisp诞生之时，就包含了9种新思想。而这九种新思想也在各种
 6. Assert statements: Assert statements raise an exception of type `AssertionError`.
 7. Raise statements
 
+### HW08
+
+- No Repeats: 需要向后递归，我有点懵看一些答案怎么写的
+
+- ```scheme
+  (define (no-repeats s)
+    (cond
+      ((null? s) s)
+      (else (cons (car s) (no-repeats (
+        filter (lambda (x) (not (= x (car s)))) (cdr s)))))
+    )
+  )
+  
+  (define (no-repeats-helper p n)
+    (cond
+      ((null? n) p)
+      ((in p (car n)) (no-repeats-helper p (cdr n)))
+      (else (no-repeats-helper (append p (list (car n))) (cdr n)))
+    )
+  )
+  
+  ; Check whether an item is in a list
+  (define (in lst item)
+    (cond
+      ((null? lst) #f)
+      ((= (car lst) item) #t)
+      (else (in (cdr lst) item))
+    )
+  )
+  ```
+
+- help函数版本保留了答案项，更符合人的直觉。
+
+- 仔细观察非help版本，可以看到奇妙的解决方法（语言表达不出来了）
+
 ### Calculator
 
 - Programming languages
@@ -865,3 +962,119 @@ Lisp诞生之时，就包含了9种新思想。而这九种新思想也在各种
 - Interactive interpreters
   - ![image-20220113132214547](https://gitee.com/dongramesez/typora-img/raw/master/img/202201131322640.png)
 
+### Interpreters
+
+- Interpreting Scheme
+  - ![image-20220113232155195](https://gitee.com/dongramesez/typora-img/raw/master/img/202201132321275.png)
+- Special forms
+- Logical forms
+- Quotation
+- Lambda expressions
+- Define expressions
+
+### Tail Calls
+
+- Lexical vs. dynamic scopes
+
+  - **Dynamic scope**: The parent of a frame is the frame in which a procedure was *called*
+
+    Scheme includes the `mu` special form for dynamic scoping.
+
+- Recursion efficiency
+
+- Tail recursive functions
+
+  - ![image-20220114000805276](https://gitee.com/dongramesez/typora-img/raw/master/img/202201140008373.png)
+  - ![image-20220114001043430](https://gitee.com/dongramesez/typora-img/raw/master/img/202201140010513.png)
+
+- Tail call optimization
+
+  - ![image-20220114001309308](https://gitee.com/dongramesez/typora-img/raw/master/img/202201140013444.png)
+
+### Regular expressions
+
+1. Declarative language
+
+   - ![image-20220119144839752](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191448828.png)
+   - Domain-specific languages
+   - ![image-20220119144924362](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191449427.png)
+
+2. Regular expression syntax
+
+   - [Regular expression - Wikipedia](https://en.wikipedia.org/wiki/Regular_expression)
+
+3. Regular expressions in Python
+
+   - ![image-20220119150749108](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191507181.png)
+
+4. Ambiguous regular expressions
+
+   - ![image-20220119151357496](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191513579.png)
+   - ![image-20220119151422096](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191514176.png)
+   - ![image-20220119151507929](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191515999.png)
+
+   
+
+## W13
+
+### Backus-Naur Form 巴科斯范式
+
+1. Backus-Naur Form
+   - BNF was invented in 1960 to describe the ALGOL language and is now used to describe many programming languages.
+   - ![image-20220119192347945](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191923040.png)
+   - ![image-20220119194038478](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191940552.png)
+   - ![image-20220119194218119](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191942179.png)
+2. BNF syntax
+3. EBNF shorthands
+4. AST display
+5. Ambiguity
+6. BNF IRL
+
+### SQL Intro
+
+1. Database
+
+   - ![image-20220119194845950](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191948015.png)
+   - Relational databases: Consists of tables with data that is often related to each other
+     - ![image-20220119195307995](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191953071.png)
+
+2. SQL
+
+   - ![image-20220119195355461](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191953530.png)
+
+3. Querying tables
+
+   - ![image-20220119195648035](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191956113.png)
+   - ![image-20220119200319977](https://gitee.com/dongramesez/typora-img/raw/master/img/202201192003065.png)
+   - ![image-20220119200504990](https://gitee.com/dongramesez/typora-img/raw/master/img/202201192005073.png)
+   - [SQLite SELECT documentation](https://www.sqlite.org/lang_select.html)
+
+   
+
+### SQL Tables
+
+1. Creating tables
+
+   1. ![image-20220119200842724](https://gitee.com/dongramesez/typora-img/raw/master/img/202201192008808.png)
+   2. ![image-20220119201247397](https://gitee.com/dongramesez/typora-img/raw/master/img/202201192012477.png)
+
+2. Joining tables
+
+   - ![image-20220119201412759](https://gitee.com/dongramesez/typora-img/raw/master/img/202201192014825.png)
+   - 
+
+3. Table aliases
+
+4. Numerical expressions
+
+   - ![image-20220119223647694](https://gitee.com/dongramesez/typora-img/raw/master/img/202201192236778.png)
+
+5. String expressions
+
+   ![image-20220119223702107](https://gitee.com/dongramesez/typora-img/raw/master/img/202201192237184.png)
+
+6. [SQLite Syntax: expr](https://www.sqlite.org/syntax/expr.html)
+
+### Lab13
+
+1. 使用SQL解决问题，因为对题目的不理解以及对SQL的陌生导致做的很差。

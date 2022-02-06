@@ -702,4 +702,71 @@ You COU in two parts:
 6. ![image-20220109173053188](https://gitee.com/dongramesez/typora-img/raw/master/img/202201091730264.png)
 7. Fully Associative Caches
    1. Each memory block can map anywhere in the cache
+   2. ![image-20220118105232780](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181052872.png)
+   3. ![image-20220118105654805](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181056878.png)
+   4. 第一位v是valid,使能端
+   5. ![image-20220118111031510](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181110578.png)
+   6. ![image-20220118111458830](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181114890.png)
+8.  Direct-Mapped Caches
+   1. ![image-20220118111841004](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181118047.png)
+   2. ![image-20220118111954915](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181119965.png)
+   3. ![image-20220118112247519](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181122583.png)
+
+9. Set Associative Caches
+   1. ![image-20220118112344517](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181123571.png)
+   2. ![image-20220118112411408](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181124476.png)
+   3. ![image-20220118113936603](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181139657.png)
+
+
+10. AMAT![image-20220118115113908](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181151965.png)
+11. ![image-20220118121018620](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181210671.png)
+12. ![image-20220118150624706](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181506780.png)
+13. ![image-20220118150759945](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181508010.png)
+14. ![image-20220118150820204](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181508280.png)
+15. ![image-20220118151353692](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181513762.png)
+16. ![image-20220118151716103](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181517178.png)
+
+### Lab 07 Cache
+
+1. Write back && Write-through && Write-around
+   - write-back 仅写入cache, 延迟低，但硬件难以实现
+   - write-through 意味着同时向cache和memory写，延迟较高。硬件上容易实现
+   - write-around 只写入内存，在这种情况下就不存在所谓的write-hit
+
+2. Write-allocate or No write-allocate
+   - Write-allocate 意味着当write miss 时， 也将这个快存入cache
+   - No write-allocate 当write-miss 时，不需要pull the block to cache
+
+3. 通常有两种cache hit/miss 策略组合
+   - Write-through/no-write allocate: 保持cache和memory同步更新。可能会出现write-miss之后,接下来read同样也会miss
+   - Write-back/write-allocate: hits 时， 只写到cache。miss时，被修改的快要pull到cache 。这种方法消除了所以写击中主存访问，比第一张策略更高效
+
+4. 还有三种常用的替换策略
+   - LRU(Least Recently Used)
+   - Random
+   - MRU(Most Recently Used)
+
+5. Exercise 3
+
+   - ![image-20220119115240070](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191152109.png)
+
+   - ![image-20220119115218578](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191152641.png)
+
+   - 用 矩阵 block 的方法来提高矩阵求转置的速度，不是一行一行的转置，而是一个块一个块转置。
+
+   - ```c++
+     void transpose_blocking(int n, int blocksize, int *dst, int *src) {
+         // YOUR CODE HERE
+         for (int i = 0; i < n; i += blocksize)
+             for (int j = 0; j < n; j+= blocksize)
+                 for (int x = 0; x < blocksize; x++)
+                     for (int y = 0; y < blocksize; y++) {
+                         dst[(i + x)*n + j + y] = src[(j + y)*n + i + x];
+                     }
+     }
+     ```
+
+   
+
+## W10/W11 Operating System & Virtual Memory
 
