@@ -177,3 +177,18 @@
 
 [tarjan模板](https://www.cnblogs.com/jjmg/p/14026900.html)
 
+## 4.0 专辑
+
+### 剑指offer
+
+#### [剑指 Offer 04. 二维数组中的查找 - 力扣（LeetCode）](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/):
+
+- O(n+m)做法：一图以蔽之![image-20220223233330284](https://gitee.com/dongramesez/typora-img/raw/master/img/image-20220223233330284.png)
+
+
+
+#### [剑指 Offer 35. 复杂链表的复制](https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
+
+- 一：哈希表建立原节点和新节点的对应关系
+- 二：**拼接+拆分**：构造“原节点->新节点->原节点->新节点”这样的链表，可以在第二次遍历时设置random，在第三次遍历将两个链表拆开。
+

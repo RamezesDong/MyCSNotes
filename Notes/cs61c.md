@@ -768,5 +768,42 @@ You COU in two parts:
 
    
 
-## W10/W11 Operating System & Virtual Memory
+## W10/W11 Operating System & Virtual Memory & I/O
 
+### Lecture 18: Operating System
+
+#### What does the OS do?
+
+- OS runs before any user programs (after BIOS and boot loader) when 
+  computer is first turned on, and intermittently runs as long as computer is on
+- Finds and controls all I/O devices in the machine in a general way
+- Starts services
+  - File system
+  - Network stack
+- Loads, runs and manages programs
+
+### What does the core of the OS need to do?
+
+- Enables **interaction** with the outside world in a uniform way
+- Allows multiple processes to safely share one computer(**Protection**)
+- **isolation**: Each process has the view that it “owns” the whole machine when it is running
+  - Share **time** on the CPU: Context Switch
+  - Share **space** in memory: Virtual Memory
+
+### Interrupts and Exceptions
+
+- Interrupt: Something external to the running program
+- Exception: Something done by the running program
+- ![image-20220221145839892](https://gitee.com/dongramesez/typora-img/raw/master/img/image-20220221145839892.png)
+- ![image-20220221145921313](https://gitee.com/dongramesez/typora-img/raw/master/img/image-20220221145921313.png)
+
+### Lecture 20 Input/Output
+
+1. I/O  Devices and Interconnects
+2. Direct Memory Access
+3. Disks
+4. Networking
+
+## W12 Data-Level Parallelism
+
+### SIMD (Single Instruction Multiple Data)
