@@ -8,6 +8,17 @@
 
 rookieDB已给我们海量代码，正所谓老师助教写九成，学生秃头填个空，阅读已给代码花了我许多时间。我想知道大家都是怎么读源码的，怎么从一个较高的层次总揽全局，同时能快速检索到细节代码？
 
+我写完了proj2后，重新梳理index目录下的代码：
+
+1. `BplusNode.java`这个类下有`get`、`put`等抽象方法以及大量重要的描述，之后还有`fromBytes()`以及具体实现。
+2. `InnerNode`和`LeafNode`继承`BPlusNode`，他们都有的属性是
+   - metedata： 元数据，包含了表名等等属性，本次实验最重要的是`order` B+树的维度
+   - `buffermanager` 缓存管理器，待研究
+   - `treeContext` B+树的锁context（上下文，环境？怎么翻译比较准确）
+   - `page` 叶子节点序列化存储的页
+   - `keys` 键值，也是我们排序的索引
+   - 
+
 ## Task1
 
 阅读代码注释浪费我太多时间（因为效率太低），我决定先开始着手task1。根据已给提示仿照`InnerNode::fromBytes`完成代码，并根据idea提示进行修改。

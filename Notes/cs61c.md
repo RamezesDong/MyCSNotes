@@ -20,8 +20,8 @@ Written in 2021/12/13
 
 ### Intro
 
-- ![image-20211213161207392](https://gitee.com/dongramesez/typora-img/raw/master/img/202112131612578.png)
-- Great Idea![image-20211216104054462](https://gitee.com/dongramesez/typora-img/raw/master/img/202112161040557.png)
+- ![image-20211213161207392](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112131612578.png)
+- Great Idea![image-20211216104054462](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112161040557.png)
 - After taking this class students should be able to:
   -  Identify and explain the various layers of abstraction that allow computer users to perform complex software tasks without understanding what the computer hardware is actually doing
   - Judge the effect of changing computer components (e.g. processor, RAM, HDD, cache) on the performance of a computer program
@@ -46,7 +46,7 @@ Written in 2021/12/13
 3. Only one constraint: n digits (Based B) = B^n^ things
 3. N bit Bias notation number: for example 8bits with a bias of -127.
 4. Sign and magnitude(原码) One’s Complement(反码) Two’s complement(补码)
-5. ![image-20211213165336462](https://gitee.com/dongramesez/typora-img/raw/master/img/202112131653503.png)
+5. ![image-20211213165336462](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112131653503.png)
 6. Sign Extension
    1. easy for positive, more complicated for negative 
    2. One’s/Two’s complement: copy MSB
@@ -69,7 +69,7 @@ Written in 2021/12/13
 
    2. C Pre-Processor(CPP)
 
-      - ![image-20211216104811979](https://gitee.com/dongramesez/typora-img/raw/master/img/202112161048013.png)
+      - ![image-20211216104811979](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112161048013.png)
 
       - macro Function bugs
 
@@ -99,7 +99,7 @@ Written in 2021/12/13
 
       A pointer is a variable that contains an address
 
-      ![image-20211213173640246](https://gitee.com/dongramesez/typora-img/raw/master/img/202112131736289.png)
+      ![image-20211213173640246](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112131736289.png)
 
       Pointers are used to point to one kind of data (int, char, a struct, etc.) pointer to a pointer (int **pp)
       •Exception is the type void *, which can point to anything (generic pointer)
@@ -122,7 +122,7 @@ Written in 2021/12/13
    - Result of malloc : Heap
    - String Literals: Static `s = "hello"`
 
-- ![image-20211216171727484](https://gitee.com/dongramesez/typora-img/raw/master/img/202112161717569.png)
+- ![image-20211216171727484](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112161717569.png)
 - If declared outside a function, allocated in “static” storage. If declared inside function, allocated on the “**stack**” and freed when function returns.
 - `main` is treated like a function
 
@@ -262,7 +262,7 @@ Written in 2021/12/13
    • Best way to understand what compilers do to generate machine code 
    • Best way to understand what the CPU hardware does
 
-4. Assembly Variables: Registers![image-20211224144207148](https://gitee.com/dongramesez/typora-img/raw/master/img/202112241442243.png)
+4. Assembly Variables: Registers![image-20211224144207148](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112241442243.png)
 
 5. Speed of Registers vs. Memory
    - Registers: 32 words(128Bytes)
@@ -290,7 +290,7 @@ Written in 2021/12/13
      - unsigned byte loads `lbu`
    - **Remember, RISC-V is “little endian”**
    - `lb x10,3(x11)` contents of memory location with address  = sum of “3” +contents of register x11 is copied to the low byte position of register x10.
-   - :star:In RISC-V immediates are sign extended, for example![image-20211224153329933](https://gitee.com/dongramesez/typora-img/raw/master/img/202112241533993.png) If we did `lbu` we’d instead get `0xf8`
+   - :star:In RISC-V immediates are sign extended, for example![image-20211224153329933](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112241533993.png) If we did `lbu` we’d instead get `0xf8`
    - RISC-V Logical Instructions
      - `and or xor sll srl/sra`
      - `slli x11,x12,2` x11 = x12 <<2 
@@ -313,13 +313,13 @@ Written in 2021/12/13
     
     - The "Application Binary Interface" defines our 'calling  convention'
     
-    - ![image-20211224163237469](https://gitee.com/dongramesez/typora-img/raw/master/img/202112241632532.png)Yes in the column referred to as **callee-saved** and those with No as **caller-saved**
+    - ![image-20211224163237469](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112241632532.png)Yes in the column referred to as **callee-saved** and those with No as **caller-saved**
     
       函数调用中的其他寄存器，要么被当做保存寄存器前后值不变，要么当临时寄存器，在函数调用中不保留。YES---callee-saved 表示被保留的
     
-    - ![image-20211224164435595](https://gitee.com/dongramesez/typora-img/raw/master/img/202112241644646.png)
+    - ![image-20211224164435595](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112241644646.png)
     
-11. RV32 Memory Allocation![image-20211224170102093](https://gitee.com/dongramesez/typora-img/raw/master/img/202112241701175.png)
+11. RV32 Memory Allocation![image-20211224170102093](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112241701175.png)
     - static data segment (constants and other static variables) above text for static variables 
       •RISC-V convention global pointer (gp) points to static 
       •RV32 gp = 1000_0000hex
@@ -362,22 +362,22 @@ Written in 2021/12/13
      - B-format for branches
      - U-format for 20-bit upper immediate instructions 
      - J-format for jumps
-     - ![image-20211224230500138](https://gitee.com/dongramesez/typora-img/raw/master/img/202112242305238.png)
+     - ![image-20211224230500138](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112242305238.png)
    - R-Format Instructions register specifiers
    
      - rs1(Source Register 1) rs2 rd(Destination Register)
-     - ![image-20211225000750312](https://gitee.com/dongramesez/typora-img/raw/master/img/202112250007424.png)
+     - ![image-20211225000750312](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112250007424.png)
    - I-format instruction Layout
    
      - Immediate is always sign-extended to 32-bits before use in an arithmetic/logic operation
-     - ![image-20211225001453196](https://gitee.com/dongramesez/typora-img/raw/master/img/202112250014303.png)
+     - ![image-20211225001453196](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112250014303.png)
    
      - **Load Instructions are also I-Type**
-     - ![image-20211225001603531](https://gitee.com/dongramesez/typora-img/raw/master/img/202112250016613.png)
+     - ![image-20211225001603531](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112250016613.png)
    - S-Format Used for Stores
 
      - Store needs to read two registers,`rs1` is base memory address and `rs2` for data to be stored, as well as need immediate offset!
-     - ![image-20211225002259952](https://gitee.com/dongramesez/typora-img/raw/master/img/202112250023015.png)
+     - ![image-20211225002259952](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112250023015.png)
    - B - Format
      - Branches typically used for loops (if-else, while, for ). Loops are generally small (<50 instructions)
      - `BEQ x1, x2, Label`
@@ -385,20 +385,20 @@ Written in 2021/12/13
        - If we do take the branch: PC = PC + immediate
      - 12-bits immediate , could specify +- 2^11 byte address offset from the PC. However, extensions to RISC-V base ISA support 61-bit compressed instructions and also variable-length instructions that are multiples of 2-Bytes in length.
      - **RISC-V scales the branch immediate by 2 bits--- so RISC-V conditional branches can only reach +-2^10 *32 -bit(+-2^10 for 4-byte instructions)**
-     - ![image-20211225101922323](https://gitee.com/dongramesez/typora-img/raw/master/img/202112251019433.png)
+     - ![image-20211225101922323](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112251019433.png)
    - U-Format for “Upper Immediate” instructions
-     - ![image-20211225102403742](https://gitee.com/dongramesez/typora-img/raw/master/img/202112251024787.png)
+     - ![image-20211225102403742](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112251024787.png)
      - LUI to create long immediates
-     - How to set 0xDEADBEEF![image-20211225102823359](https://gitee.com/dongramesez/typora-img/raw/master/img/202112251028403.png)
+     - How to set 0xDEADBEEF![image-20211225102823359](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112251028403.png)
    - J- Format for Jump Instructions
-     - ![image-20211225103430920](https://gitee.com/dongramesez/typora-img/raw/master/img/202112251034991.png)
-     - ![image-20211225103529434](https://gitee.com/dongramesez/typora-img/raw/master/img/202112251035487.png)
+     - ![image-20211225103430920](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112251034991.png)
+     - ![image-20211225103529434](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112251035487.png)
 
 ### CALL (Compiler/ Assembler/ Linker/ Loader)
 
 1.Interpretation vs. Compilation
 
-- An Interpreter is a program that executes other programs![image-20211226165657564](https://gitee.com/dongramesez/typora-img/raw/master/img/202112261656628.png)
+- An Interpreter is a program that executes other programs![image-20211226165657564](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112261656628.png)
 - Language translation gives us another option
 - In general, we interpret a high-level language when efficiency is not critical and translate to a lower-level language to increase performance.
 - How do we run a program written in a source langugae?
@@ -415,17 +415,17 @@ Written in 2021/12/13
 
 2. CALL chain
 
-   - ![image-20211226210804780](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262108868.png)
+   - ![image-20211226210804780](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112262108868.png)
    - High-level language code transform to assembly language code (foo.s for RISC-V)
      - Note: output may contain **pseudo-instructions** (assembler understand but not in machine)
-     - Steps in the complier![image-20211226211202661](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262112719.png)
+     - Steps in the complier![image-20211226211202661](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112262112719.png)
    - Assembler: A dumb complier for assembly language 
      - foo.s -> foo.o (object code, information tables)
      - Read and use Directives
      - replace pseudo-instructions
      - Produce **Machine Language** rather than just **Assembly Language**
-     - Assembler Directives![image-20211226211559314](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262115375.png)
-     - `tail offset` ![image-20211226212113975](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262121029.png)
+     - Assembler Directives![image-20211226211559314](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112262115375.png)
+     - `tail offset` ![image-20211226212113975](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112262121029.png)
 
 3. Producing Machine Language
 
@@ -455,14 +455,14 @@ Written in 2021/12/13
 
        the `jal` labels and any piece of data in static section(`la`)
 
-   - Object File Format![image-20211226215105763](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262151821.png)
+   - Object File Format![image-20211226215105763](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112262151821.png)
 
 4. Linker!!
 
    - Input: object code files with information tables
    - output: Executable code (a.out)
    - Enable separate compilation of files
-   - ![image-20211226215643145](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262156199.png)
+   - ![image-20211226215643145](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112262156199.png)
    - After taking each .0 file text and data segment, Resolve references
      - Go through Relocation Table; handle each entry 
      - That is, fill in all absolute addresses
@@ -470,7 +470,7 @@ Written in 2021/12/13
      - PC- relative (**Never relocate**)
      - extern function reference (only external jumps)
      - static data reference (auipc addi)
-   - Resolving References![image-20211226220229148](https://gitee.com/dongramesez/typora-img/raw/master/img/202112262202198.png)
+   - Resolving References![image-20211226220229148](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112262202198.png)
 
 5. Loader
 
@@ -526,7 +526,7 @@ The exercise 4 is not finished. I am too undisciplined to write my own tests.
    
 2. Stored-program computer is a computer that stores program instructions in electronically or optically accessible memory. This contrasts with systems that stored the program instructions with [plugboards](https://en.wikipedia.org/wiki/Plugboard) or similar mechanisms. 
 
-3. ![image-20220103165218008](https://gitee.com/dongramesez/typora-img/raw/master/img/202201031652068.png)
+3. ![image-20220103165218008](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201031652068.png)
 
 4. What is the maximum range of 32-bit instructions that can be reached from the current PC using a jump instruction?
 
@@ -543,13 +543,13 @@ The exercise 4 is not finished. I am too undisciplined to write my own tests.
 2. Why Binary Representation?
    - Reliability - good noise immunity.
 
-3. Logic Gates![image-20211228164858556](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281648617.png)
+3. Logic Gates![image-20211228164858556](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112281648617.png)
 
 4. **clk-to-q delay** Like logic gates, registers also have a delay associated with them before their output will reflect the input that was sampled.
 
 5. Single bit compare circuit: aka exclusive-nor (xnor) aka is also known as
 
-6. ![image-20211228165430887](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281654956.png)
+6. ![image-20211228165430887](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112281654956.png)
 
 7. State Elements:
 
@@ -560,30 +560,30 @@ The exercise 4 is not finished. I am too undisciplined to write my own tests.
    - State Elements (registers, memories)
 
 10. Finite State Machine(FSM): Adding registers to CL , aka “sequential circuits”
-   - Example sequential circuits (Program counter) PC ![image-20211228170256624](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281702672.png)
+   - Example sequential circuits (Program counter) PC ![image-20211228170256624](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112281702672.png)
    - The cMOS register circuits in common 
      use are “edge-triggered” 
-     - ![image-20211228171332627](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281713664.png)
+     - ![image-20211228171332627](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112281713664.png)
    - Sequential circuits with feedback are often modeled as finite state machines
 
-11. ![image-20211228171142526](C:/Users/Ramezes%20Dong/AppData/Roaming/Typora/typora-user-images/image-20211228171142526.png)
+11. ![image-20211228171142526](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20211228171142526.png)
 
 12. Introduction the “multiplexor”, aka “mux”
 
-    - ![image-20211228172100756](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281721801.png)
-    - ![image-20211228172434540](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281724596.png)
+    - ![image-20211228172100756](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112281721801.png)
+    - ![image-20211228172434540](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112281724596.png)
 
 13. MOS transistor: nFET (Three electrical terminals: gate, source, drain)
 
-    - ![image-20211228172618825](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281726874.png)
+    - ![image-20211228172618825](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112281726874.png)
 
-    - ![image-20211228173003976](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281730038.png)
+    - ![image-20211228173003976](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112281730038.png)
 
 14. Nasty realities: 
     - Delays in CMOS circuits
       - transistors as water values
       - Consequences:  the delay time 
-      - ![image-20211228173941657](https://gitee.com/dongramesez/typora-img/raw/master/img/202112281739688.png)
+      - ![image-20211228173941657](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112281739688.png)
     - CMOS circuits use electrical energy (consume power)
 
 ### DIS6
@@ -610,65 +610,65 @@ You COU in two parts:
 
 2. Basic Phase of Instruction Execution
 
-   ![image-20211229094713122](https://gitee.com/dongramesez/typora-img/raw/master/img/202112290947206.png)
+   ![image-20211229094713122](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112290947206.png)
 
-3. ![image-20211229101001070](https://gitee.com/dongramesez/typora-img/raw/master/img/202112291010142.png)
+3. ![image-20211229101001070](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112291010142.png)
 
 3. `BrEq BrLT` is used in the Branch Compare. `BrUn = 1` selects unsigned comparison for `BrLT`, 0=signed. 
 
-3. ![image-20220108103434171](https://gitee.com/dongramesez/typora-img/raw/master/img/202201081034270.png)
+3. ![image-20220108103434171](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201081034270.png)
 
-4. Conclusion![image-20211229110739214](https://gitee.com/dongramesez/typora-img/raw/master/img/202112291107287.png)
+4. Conclusion![image-20211229110739214](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202112291107287.png)
 
 #### Part 2: RICS-V Control & Operating Speed
 
 1. Controller
-   - ![image-20220107163133724](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071631847.png)
+   - ![image-20220107163133724](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071631847.png)
    - Notes: Instruction type encoded using only 9 bits `inst[30] inst[14:21], inst[6:2]`
-   - ![image-20220107163307602](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071633683.png)
+   - ![image-20220107163307602](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071633683.png)
    - Rom Controller Implementation 
      - ROM is common for CISC ISAs (like x86) but is less common for RISC ISAs (like RISC-V). 
      - Can be easily reprogrammed during the design process to `fix errors and add instructions`
-   - ![image-20220107163355075](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071633152.png)
+   - ![image-20220107163355075](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071633152.png)
    - Combinatorial Logic
      - Used in real-world RISC-V systems.
 2. Instruction Timing
    1. Typical Approximate Worst -Case Instruction Timing
-      - ![image-20220107164039373](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071640447.png)
+      - ![image-20220107164039373](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071640447.png)
    2. Performance Measure
       1. The Iron Law of processor performance .
-      2. ![image-20220107164325374](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071643419.png)
-      3. ![image-20220107164452352](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071644428.png)
-      4. ![image-20220107164510602](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071645660.png)
-      5. ![image-20220107175514558](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071755621.png)
-      6. ![image-20220107175628385](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071756453.png)
-      7. ![image-20220107175726036](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071757102.png)
+      2. ![image-20220107164325374](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071643419.png)
+      3. ![image-20220107164452352](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071644428.png)
+      4. ![image-20220107164510602](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071645660.png)
+      5. ![image-20220107175514558](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071755621.png)
+      6. ![image-20220107175628385](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071756453.png)
+      7. ![image-20220107175726036](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071757102.png)
 
 
 #### Part3: Pipelining
 
 1. A familiar example:
-   - ![image-20220107180054232](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071800330.png)
-   - ![image-20220107180125334](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071801393.png)
+   - ![image-20220107180054232](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071800330.png)
+   - ![image-20220107180125334](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071801393.png)
 
 2. Pipelined RISC-V DataPath
-   - ![image-20220107180411898](https://gitee.com/dongramesez/typora-img/raw/master/img/202201071804963.png)
+   - ![image-20220107180411898](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201071804963.png)
 
-3. ![image-20220107200609455](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072006576.png)
-4. ![image-20220107200627749](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072006851.png)
+3. ![image-20220107200609455](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201072006576.png)
+4. ![image-20220107200627749](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201072006851.png)
 5. Pipeline Hazards
-   - ![image-20220107200756059](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072007139.png)
-   - ![image-20220107201749713](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072017800.png)
-   - ![image-20220107201822975](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072018042.png)
-   - ![image-20220107215942343](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072159425.png)
-   - ![image-20220107221733421](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072217510.png)
+   - ![image-20220107200756059](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201072007139.png)
+   - ![image-20220107201749713](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201072017800.png)
+   - ![image-20220107201822975](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201072018042.png)
+   - ![image-20220107215942343](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201072159425.png)
+   - ![image-20220107221733421](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201072217510.png)
      - Solution 1: Stalling
      - Solution 2: Forwarding(grab operand from pipeline stage, rather than register file)
-   - ![image-20220107222325290](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072223373.png)
-   - ![image-20220107222910679](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072229760.png)
+   - ![image-20220107222325290](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201072223373.png)
+   - ![image-20220107222910679](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201072229760.png)
 6. Superscalar Processors
    - What is the CPI? Cycles Per Instruction
-   - ![image-20220107230928389](https://gitee.com/dongramesez/typora-img/raw/master/img/202201072309468.png)
+   - ![image-20220107230928389](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201072309468.png)
 7. 5 Phase of execution
    - IF, ID ,EX, MEM, WB	
 
@@ -685,10 +685,15 @@ You COU in two parts:
 
 1. How to resolve the immediate selection and register selection with a explicate structure?
    - 串联多路选择器
-   - ![image-20220108160421688](https://gitee.com/dongramesez/typora-img/raw/master/img/202201081604741.png)
+   - ![image-20220108160421688](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201081604741.png)
    - Immediate Generator 
-   - ![image-20220108221503009](https://gitee.com/dongramesez/typora-img/raw/master/img/202201082215084.png)
-   - 
+   - ![image-20220108221503009](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201082215084.png)
+2. 大多数工作都完成了![image-20220402155240925](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220402155240925.png)（gitee图床都挂了，心态爆炸)
+3. 总结一下pipelining。
+   - 本实验用的二级流水线，IF和其他阶段并行，需要一个寄存器存储pc
+   - 每次预先取一个指令，但是要考虑分支问题，若是出现pcsel = 1，要分支跳转怎么办？
+   - ![image-20220402173420512](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220402173420512.png)
+   - 如图，instructon是提前取出的指令，可能过时，所以用pcsel判断，如果过时就执行`add x0 x0 x0`指令
 
 ## W9/W10 Memory Hierarchy, Caches
 
@@ -697,34 +702,34 @@ You COU in two parts:
 1. Principle of Locality: Programs access only a small portion of the full address space at any instant of time
 2. Temporal Locality (locality in time)
 3. Spatial Locality (locality in space)
-4. ![image-20220109155854748](https://gitee.com/dongramesez/typora-img/raw/master/img/202201091558848.png)
-5. ![image-20220109160026665](https://gitee.com/dongramesez/typora-img/raw/master/img/202201091600725.png)
-6. ![image-20220109173053188](https://gitee.com/dongramesez/typora-img/raw/master/img/202201091730264.png)
+4. ![image-20220109155854748](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201091558848.png)
+5. ![image-20220109160026665](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201091600725.png)
+6. ![image-20220109173053188](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201091730264.png)
 7. Fully Associative Caches
    1. Each memory block can map anywhere in the cache
-   2. ![image-20220118105232780](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181052872.png)
-   3. ![image-20220118105654805](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181056878.png)
+   2. ![image-20220118105232780](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181052872.png)
+   3. ![image-20220118105654805](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181056878.png)
    4. 第一位v是valid,使能端
-   5. ![image-20220118111031510](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181110578.png)
-   6. ![image-20220118111458830](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181114890.png)
+   5. ![image-20220118111031510](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181110578.png)
+   6. ![image-20220118111458830](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181114890.png)
 8.  Direct-Mapped Caches
-   1. ![image-20220118111841004](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181118047.png)
-   2. ![image-20220118111954915](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181119965.png)
-   3. ![image-20220118112247519](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181122583.png)
+   1. ![image-20220118111841004](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181118047.png)
+   2. ![image-20220118111954915](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181119965.png)
+   3. ![image-20220118112247519](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181122583.png)
 
 9. Set Associative Caches
-   1. ![image-20220118112344517](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181123571.png)
-   2. ![image-20220118112411408](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181124476.png)
-   3. ![image-20220118113936603](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181139657.png)
+   1. ![image-20220118112344517](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181123571.png)
+   2. ![image-20220118112411408](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181124476.png)
+   3. ![image-20220118113936603](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181139657.png)
 
 
-10. AMAT![image-20220118115113908](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181151965.png)
-11. ![image-20220118121018620](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181210671.png)
-12. ![image-20220118150624706](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181506780.png)
-13. ![image-20220118150759945](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181508010.png)
-14. ![image-20220118150820204](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181508280.png)
-15. ![image-20220118151353692](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181513762.png)
-16. ![image-20220118151716103](https://gitee.com/dongramesez/typora-img/raw/master/img/202201181517178.png)
+10. AMAT![image-20220118115113908](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181151965.png)
+11. ![image-20220118121018620](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181210671.png)
+12. ![image-20220118150624706](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181506780.png)
+13. ![image-20220118150759945](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181508010.png)
+14. ![image-20220118150820204](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181508280.png)
+15. ![image-20220118151353692](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181513762.png)
+16. ![image-20220118151716103](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201181517178.png)
 
 ### Lab 07 Cache
 
@@ -748,9 +753,9 @@ You COU in two parts:
 
 5. Exercise 3
 
-   - ![image-20220119115240070](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191152109.png)
+   - ![image-20220119115240070](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201191152109.png)
 
-   - ![image-20220119115218578](https://gitee.com/dongramesez/typora-img/raw/master/img/202201191152641.png)
+   - ![image-20220119115218578](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/202201191152641.png)
 
    - 用 矩阵 block 的方法来提高矩阵求转置的速度，不是一行一行的转置，而是一个块一个块转置。
 
@@ -768,7 +773,7 @@ You COU in two parts:
 
    
 
-## W10/W11 Operating System & Virtual Memory & I/O
+## W10/W11 Operating System  & I/O
 
 ### Lecture 18: Operating System
 
@@ -794,8 +799,8 @@ You COU in two parts:
 
 - Interrupt: Something external to the running program
 - Exception: Something done by the running program
-- ![image-20220221145839892](https://gitee.com/dongramesez/typora-img/raw/master/img/image-20220221145839892.png)
-- ![image-20220221145921313](https://gitee.com/dongramesez/typora-img/raw/master/img/image-20220221145921313.png)
+- ![image-20220221145839892](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220221145839892.png)
+- ![image-20220221145921313](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220221145921313.png)
 
 ### Lecture 20 Input/Output
 
@@ -804,6 +809,54 @@ You COU in two parts:
 3. Disks
 4. Networking
 
-## W12 Data-Level Parallelism
+## W12 Parallelism
 
-### SIMD (Single Instruction Multiple Data)
+### Lecture 18: Filynn’s Taxonomoy, Data-level Parallelism
+
+1. ![image-20220427100831468](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220427100831468.png)
+2. Reference Problem
+   - Dense matrix multiplication
+   - dgemm(double-precision floating-point general matrix-multiply)
+3. 2D-Matrices -- Square matrix of dimension MxN
+   - **C = A * B** 
+   - <img src="https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220427101602587.png" alt="image-20220427101602587" style="zoom: 25%;" />
+
+4. ![image-20220427101812950](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220427101812950.png)
+
+#### Parallel Processing
+
+1. Why?
+   - CPU clock rates are no longer increasing
+   - Parallel processing is only path to higher speed
+
+2. Two basic approaches to parallelism:
+   - Multiprogramming
+   - Parallel computing
+3. Single-Instruction/Single-Data Stream(SISD)
+   - ![image-20220427102639570](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220427102639570.png)
+4. Sigle-Instruction/Multiple-Data Stream(SIMD)
+   - ![image-20220427102730847](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220427102730847.png)
+
+5. Multiple-Instruction/Multiple-data Streams
+   - ![image-20220427102835673](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220427102835673.png)
+6. Multiple-Instruction/Single-Data Stream 
+   (MISD)
+   - ![image-20220427103000450](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220427103000450.png)
+7. Flynn’s Taxonomy
+   - ![image-20220427103127541](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220427103127541.png)
+
+### SIMD matrix multiplication
+
+#### Problem
+
+1. Today’s compliers can generate SIMD code
+2. But in some cases, better results by hand(assembly)
+3. We will study x86 (not using RISC-V as no vector hardware widely available yet) 
+4. Can we use the compiler to generate all non-SIMD instructions?
+
+![image-20220427104630693](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220427104630693.png)
+
+### Loop Unrolling
+
+![image-20220427104853301](https://cdn.jsdelivr.net/gh/RamezesDong/Pictures-for-Markdown@main/img/image-20220427104853301.png)
+

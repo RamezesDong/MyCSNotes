@@ -18,9 +18,16 @@
 
 ### 1.0 题目
 
-##### 0015. [三数之和](https://leetcode-cn.com/problems/3sum/)
+##### 0015. [三数之和](https://leetcode-cn.com/problems/3sum/):star:
 
 - 排序+双指针
+- ![image-20220308132459497](https://gitee.com/dongramesez/typora-img/raw/master/img/image-20220308132459497.png)
+
+##### [0025. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)
+
+- 写出来不难，我用的递归思路，关键是O(1)空间
+- 使用类似原地反转链表的方法，思路见图
+- ![image-20220301162006323](https://gitee.com/dongramesez/typora-img/raw/master/img/image-20220301162006323.png)
 
 ##### 0045.[跳跃游戏II](https://leetcode-cn.com/problems/jump-game-ii/)
 
@@ -171,13 +178,31 @@
   - 最小连续子数组也可以使用kadane算法（全局最小为所有局部最小的最小值）
   - 注意：可能出现全负情况，则返回maxn即可
 
+#### java arraysort 2d
+
+```java
+double[][] array= {
+{1, 5},
+{13, 1.55},
+{12, 100.6},
+{12.1, .85} };
+
+java.util.Arrays.sort(array, new java.util.Comparator<double[]>() {
+    public int compare(double[] a, double[] b) {
+        return Double.compare(a[0], b[0]);
+    }
+})
+```
+
+
+
 #### tarjan算法求SCC（强连通分量）& 缩点
 
 [tarjan算法求SCC（强连通分量）& 缩点](https://www.cnblogs.com/jrdxy/p/13172875.html)
 
 [tarjan模板](https://www.cnblogs.com/jjmg/p/14026900.html)
 
-## 4.0 专辑
+### 4.0 专辑
 
 ### 剑指offer
 
@@ -191,4 +216,42 @@
 
 - 一：哈希表建立原节点和新节点的对应关系
 - 二：**拼接+拆分**：构造“原节点->新节点->原节点->新节点”这样的链表，可以在第二次遍历时设置random，在第三次遍历将两个链表拆开。
+
+### 5.0 笔试题
+
+#### 5.1 pdd3月6日C题: 
+
+两队对战,攻击力>=防御力赢,能全赢输出防御成功次数; 不能全赢,输出-1。
+
+[题解](https://ac.nowcoder.com/discuss/855433?type=2&channel=-1&source_id=discuss_center_discuss_hot_nctrack)
+
+贪心，对己方集合按攻击力升序[排序]()，对方集合按防御力升序[排序]()，然后从后向前考虑当前防御力最高的对手，在己方集合中找到一个能干掉他但又尽可能不浪费自己防御力的人。（如果找不到，就选己方防御力最低的人上，类似“下等马”的感觉）
+
+- 我原来也是这么想的但是实现的很差
+
+- ```java
+      multiset<int> s;
+      for (int i = n - 1, j = m - 1; j >= 0;) {
+          while (i >= 0 && d[i].x >= p[j].y) {
+              s.insert(d[i].y);
+              --i;
+          }
+          if (s.empty()) {
+              puts("-1");
+              return 0;
+          }
+          auto it = s.upper_bound(p[j].x);
+          if (it == s.end()) {
+              it = s.begin();
+              s.erase(it);
+          } else {
+              ++ans;
+              s.erase(it);
+          }
+          --j;
+      }
+      printf("%d\n", ans);
+  ```
+
+- 将所有符合条件的A方防御力加入，之后用`upper_bound()`选出那个刚刚好的来对战[见教程](https://www.cplusplus.com/reference/algorithm/upper_bound/)
 
